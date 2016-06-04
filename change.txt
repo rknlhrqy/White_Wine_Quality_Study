@@ -1,0 +1,29 @@
+Here is the change to wine.Rmd, based on the review from Udacity.
+
+1, Add the following code to disable codes, warnings and messages.
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, messages=FALSE)
+```
+
+2, Change geom_histogram() to geom_bar() when drawing the distribution of Quality, because Quality is a categorical varaible.
+
+3, Add comments into function remove_outliers() and in some other codes.
+
+4, Separate the lines of code which is longer than 80 characters.
+
+5, In all histogram plots, adjust the bin size, to get the more appropriate and clear plots and remove the empty spaces between bins.
+
+6, The ggpairs plot is over-crowded and axis labels cannot be seen. They are split up into several different plots.
+
+7, Quality is discrete and ordinal. Boxplot should be used instead of Scatter plots. So all scatter plots for Quality and one other feature is replaced with Boxplots.
+
+8, In Multivariate section, the facet plots are redrawn using position_dodge and Legend's name is filled correctly.
+
+9, In Bivariate section, more analysis is added to the statistics.
+
+10, Plot 1 is changed. A bar plot of Quality and its normal distribution curve is added.
+
+11, Plot 2: the legend title is added.
+
+12, Plot 3, Quality is a discrete variable and the boxplot is added.
