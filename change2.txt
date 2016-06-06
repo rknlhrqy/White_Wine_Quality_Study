@@ -1,0 +1,4 @@
+1, Fix two Markdown problems where text and plot appear on the same lines.
+2, Fix the Chlorides distribution plot problem, where x-axis should use log10 scale.
+3, In Plot Two, use Scale_color_brewer() to apply a different color palette, which make it easy to identify the effect of different Alcohol level.
+

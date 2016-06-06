@@ -199,8 +199,10 @@ ggplot(aes(x = volatile.acidity), data = wine) +
 
 summary(wine$volatile.acidity)
 ```
+
 Volatile Acidity is a positively skewed normal distribution.
 Median value is 0.26. 50% of wines have Volatile Acidity between 0.21 and 0.32.
+
 ```{r}
 ggplot(aes(x = volatile.acidity), data = wine) +
   geom_histogram(binwidth = 0.05, color = 'black', fill = I('#099009')) +
@@ -211,23 +213,28 @@ ggplot(aes(x = volatile.acidity), data = wine) +
   
 U.S. legal limit of Volatile acidity for the white wine is 1.1g/L (See http://waterhouse.ucdavis.edu/whats-in-wine/volatile-acidity[link](http://waterhouse.ucdavis.edu/whats-in-wine/volatile-acidity))
 Here let us see how many wines exceed the US limit of Volatile acidity.
+
 ```{r}
 sum(wine$volatile.acidity > 1.1)
 ```
+
 Interesting. No wines exceed the limit. I guess only wines within the limit are allowed in markets.
 In wines, Volatile acidity should be as low as possible.
 
 ```{r}
 ggplot(aes(x = chlorides), data = wine) +
-  geom_histogram(binwidth = 0.005, color = 'black', fill = I('#099009')) +
-  scale_x_continuous(breaks = seq(0.01, 0.35, 0.05)) +
+  geom_histogram(binwidth = 0.05, color = 'black', fill = I('#099009')) +
+  
+  scale_x_log10(breaks = seq(0.01, 0.35, 0.05)) +
   scale_y_continuous(breaks = seq(0, 900, 50)) +
   xlab('Chlorides (g/L)')
 
 summary(wine$chlorides)
 ```
+
 Median is 0.043g/L. 50% of wines have chlorides from 0.036g/L to 0.05g/L.
 It is salt in wines. The vine takes the salt from water and deposits into the grapes. It is said that in some cases high salt levels can soften the acidity in wines. So salt is added when acidity is high in wines. I would like to study whether this is true.
+
 ```{r}
 ggplot(aes(x = free.sulfur.dioxide), data = wine) +
   geom_histogram(binwidth = 2, color = 'black', fill = I('#099009')) +
@@ -236,8 +243,10 @@ ggplot(aes(x = free.sulfur.dioxide), data = wine) +
   xlab('Free Sulfur Dioxide (mg/L)')
 summary(wine$free.sulfur.dioxide)
 ```
+
 Sulfur dioxide is a fruit preservative widely used in wines. Free sulfur dioxide is the free form of SO2. In US, the law states that wines cannot contain more than 350mg/L.
 In this dataset, the median is 34mg/L. 50% of wines have from 23mg/L to 46mg/L. I wonder if Sulfur dioxide is affecting the quality of wines.
+
 ```{r}
 ggplot(aes(x = total.sulfur.dioxide), data = wine) +
   geom_histogram(binwidth = 4, color = 'black', fill = I('#099009')) +
@@ -1075,6 +1084,7 @@ ggplot(aes(x = total.acidity, y = pH), data = wine) +
 Remove the outliers on Fixed Acidity which may affect the accuracy.
  
 Redraw the plot.
+
 ```{r}
 ggplot(aes(x = total.acidity, y = pH), data = wine_no_outlier_totalacidity) + 
   geom_jitter(alpha = 0.5, size = 1.5, color = "blue") +
@@ -1344,6 +1354,7 @@ sd(wine$quality)
 ggplot(aes(x = quality), data = wine) + 
   geom_density(aes(group = alcohol_cate, colour=alcohol_cate), size=1) +
   labs(color = "Alcohol (%)") +
+  scale_color_brewer() +
   scale_x_continuous(lim=c(3, 9), breaks=seq(3, 9, 1))+
   xlab("Quality") +
   ylab("Density Distribution") +
